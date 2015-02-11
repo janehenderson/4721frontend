@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mapp History</string>
+    <string name="textview">Hello Front Endian!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button">Notifications</string>
+    <string name="switch1">Inscription 1</string>
+
+</resources>
