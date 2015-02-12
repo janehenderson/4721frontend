@@ -1,11 +1,12 @@
 package com.example.frontendian.mappprototype;
 
 //Much of this code was adapted from http://www.raywenderlich.com/78576/android-tutorial-for-beginners-part-2
+// and some from http://chrisrisner.com/31-Days-of-Android--Day-5%E2%80%93Adding-Multiple-Activities-and-using-Intents
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -80,7 +81,13 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         // Log the item's position and contents
         // to the console in Debug
-        Log.d("mapp history", position + ": " + mNameList.get(position));
+        //Log.d("mapp history", position + ": " + mNameList.get(position));
+
+        //On click, open the individual inscription view
+        Intent myIntent = new Intent(getApplicationContext(), InscriptionDisplay.class);
+        // pass information about which item selected to inscription display activity
+        myIntent.putExtra("IDstring", mNameList.get(position).toString());
+        startActivity(myIntent);
     }
 
     /**@Override

@@ -6,7 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="button">Switch example</string>
     <string name="switch1">Add inscription</string>
-    <string name="title_activity_inscription_display">InscriptionDisplay</string>
+    <string name="title_activity_inscription_display">Inscription Display</string>
     <string name="hello_world">Hello world!</string>
+    <string name="inscription_view">Inscription info here...</string>
 
 </resources>

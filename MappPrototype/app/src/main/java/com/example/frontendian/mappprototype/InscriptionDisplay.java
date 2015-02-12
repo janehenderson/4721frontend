@@ -1,17 +1,29 @@
 package com.example.frontendian.mappprototype;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class InscriptionDisplay extends ActionBarActivity {
+
+    TextView textView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_display);
+
+        // get information passed from history activity
+        textView1 = (TextView) findViewById(R.id.inscr_info);
+        Intent myIntent = getIntent();
+
+        textView1.setText(myIntent.getStringExtra("IDstring"));
+
+
     }
 
 
