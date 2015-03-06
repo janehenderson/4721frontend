@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 public class History extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -24,7 +24,11 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     Button mainButton;
     ListView mainListView;
     ArrayAdapter mArrayAdapter;
-    ArrayList mNameList = new ArrayList();
+    //ArrayList mHistList = new ArrayList();
+    LinkedList mHistList = new LinkedList();
+    /**Removing the line below temporarily so that prototype works better for the moment,
+     * but will need to make this work so that history info is saved **/
+    //HistoryList mHistList = new HistoryList();
     ShareActionProvider mShareActionProvider;
     int counter = 0;
 
@@ -48,15 +52,28 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         // change the layout (second argument) to a customized layout when needed
         mArrayAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,
-                mNameList);
+                mHistList);
 
         // Set the ListView to use the ArrayAdapter
         mainListView.setAdapter(mArrayAdapter);
 
         // 5. Set this activity to react to list items being pressed
         mainListView.setOnItemClickListener(this);
+
+        // display old saved history in the list somehow
+        if(savedInstanceState != null){
+            //this method will need to be uncommented as well once we've figured out the parcelable stuff
+            //mHistList = savedInstanceState.getParcelable("theList");
+        }
     }
 
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        //this method will need to be uncommented as well once we've figured out the parcelable stuff
+        //outState.putParcelable("theList", mHistList);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,7 +88,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         mainTextView.setText("Button pressed!");
 
         // Also add that value to the list shown in the ListView
-        mNameList.add("Inscription " + counter);
+        mHistList.addFirst("Inscription " + counter);
         mArrayAdapter.notifyDataSetChanged();
         counter++;
     }
@@ -81,12 +98,12 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         // Log the item's position and contents
         // to the console in Debug
-        //Log.d("mapp history", position + ": " + mNameList.get(position));
+        //Log.d("mapp history", position + ": " + mHistList.get(position));
 
         //On click, open the individual inscription view
         Intent myIntent = new Intent(getApplicationContext(), InscriptionDisplay.class);
         // pass information about which item selected to inscription display activity
-        myIntent.putExtra("IDstring", mNameList.get(position).toString());
+        myIntent.putExtra("IDstring", mHistList.get(position).toString());
         startActivity(myIntent);
     }
 
