@@ -3,8 +3,11 @@ package com.example.frontendian.mappprototype;
 //Much of this code was adapted from http://www.raywenderlich.com/78576/android-tutorial-for-beginners-part-2
 // and some from http://chrisrisner.com/31-Days-of-Android--Day-5%E2%80%93Adding-Multiple-Activities-and-using-Intents
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
@@ -65,6 +68,15 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
             //this method will need to be uncommented as well once we've figured out the parcelable stuff
             //mHistList = savedInstanceState.getParcelable("theList");
         }
+
+        /////Testing notifications!!!!/////
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("My notification")
+                .setContentText("Hello asshat");
+        NotificationManager mNotifyMana =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotifyMana.notify(001, mBuilder.build());
     }
 
 
