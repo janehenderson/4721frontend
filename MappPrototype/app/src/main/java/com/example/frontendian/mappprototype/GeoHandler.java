@@ -1,6 +1,7 @@
 package com.example.frontendian.mappprototype;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,20 +34,28 @@ public class GeoHandler extends BroadcastReceiver{
         //We can kinda assume that this is true.
         intent.getStringExtra("tag"); // c or l if l do stuff.
 
-        intent.getStringExtra("id"); //exactly which geofence it is.
-
-        intent.getStringExtra("Translation");
-        intent.getStringExtra("Text");
 
         //TODO update with inscription data.
         if(intent.getStringExtra("tag").equals("l")) {//do stuff if local geofence.
             if (intent.getIntExtra("transitiontype", -1) == Geofence.GEOFENCE_TRANSITION_DWELL ||
                     intent.getIntExtra("transitiontype", -1) == Geofence.GEOFENCE_TRANSITION_ENTER) {
+                //Stuff happening when we're making the notification.
+                //CREATING THE INSCRIPTION
+                String trans=intent.getStringExtra("Translation");
+                String text = intent.getStringExtra("Text");
+                String name = intent.getStringExtra("Name");
+                Inscription inscription = new Inscription(name,trans,text);
+                //Stuff that links this notification to an inscriptionDisplay???
+                Intent resultIntent = new Intent(context, InscriptionDisplay.class);
+                PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                        context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                //How do we get the inscription object into the display???
 
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle("My notification")
-                        .setContentText("Hello asshat");
+                        .setContentText("Here is a new Notification!:"+)
+                        .setContentIntent(resultPendingIntent);
                 NotificationManager mNotifyMana =
                         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotifyMana.notify(01, mBuilder.build());
