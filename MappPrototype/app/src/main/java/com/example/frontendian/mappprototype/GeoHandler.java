@@ -41,10 +41,14 @@ public class GeoHandler extends BroadcastReceiver{
                     intent.getIntExtra("transitiontype", -1) == Geofence.GEOFENCE_TRANSITION_ENTER) {
                 //Stuff happening when we're making the notification.
                 //CREATING THE INSCRIPTION
-                String trans=intent.getStringExtra("Translation");
+                String trans = intent.getStringExtra("Translation");
                 String text = intent.getStringExtra("Text");
                 String name = intent.getStringExtra("Name");
                 Inscription inscription = new Inscription(name,trans,text);
+
+                //ADDING TO LISTS
+                //?????
+
                 //Stuff that links this notification to an inscriptionDisplay???
                 Intent resultIntent = new Intent(context, InscriptionDisplay.class);
                 PendingIntent resultPendingIntent = PendingIntent.getActivity(

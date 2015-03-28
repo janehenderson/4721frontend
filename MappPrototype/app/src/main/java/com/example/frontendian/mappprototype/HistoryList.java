@@ -11,11 +11,17 @@ import java.util.LinkedList;
 public class HistoryList extends LinkedList implements Parcelable{
     private int mData;
     private int maxListSize = 50;
+    private static HistoryList main=null;
 
-    public HistoryList(){
+    private HistoryList(){
 
     }
-
+    public static HistoryList getHistoryList(){
+        if(main==null){
+            main= new HistoryList();
+        }
+        return main;
+    }
 
     public int describeContents() {
         return 0;
