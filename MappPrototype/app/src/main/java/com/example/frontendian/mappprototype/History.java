@@ -34,7 +34,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
      * but will need to make this work so that history info is saved **/
     HistoryList mHistList = HistoryList.getHistoryList();
 
-    LinkedList<String> InscriptionNameList = new LinkedList<String>();
+    LinkedList<String> inscriptionNameList = new LinkedList<String>();
 
     ShareActionProvider mShareActionProvider;
     int counter = 0;
@@ -57,9 +57,10 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         // Create an ArrayAdapter for the ListView
         // change the layout (second argument) to a customized layout when needed
-        mArrayAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1,
-                mHistList);
+        //mArrayAdapter = new ArrayAdapter(this,
+          //      android.R.layout.simple_list_item_1,
+            //    mHistList);
+        mArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, inscriptionNameList);
 
         // Set the ListView to use the ArrayAdapter
         mainListView.setAdapter(mArrayAdapter);
@@ -116,12 +117,13 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         // Test the Button
-       // mainTextView.setText("Button pressed!");
+        mainTextView.setText("Button pressed!");
        // Inscription nextInscription = new Inscription();
         // Also add that value to the list shown in the ListView
+        inscriptionNameList.addFirst("Name " + counter);
        // mHistList.addFirst("Inscription " + counter);
-      //  mArrayAdapter.notifyDataSetChanged();
-      //  counter++;
+        mArrayAdapter.notifyDataSetChanged();
+        counter++;
     }
 
     @Override
@@ -134,7 +136,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         //On click, open the individual inscription view
         Intent myIntent = new Intent(getApplicationContext(), InscriptionDisplay.class);
         // pass information about which item selected to inscription display activity
-        myIntent.putExtra("IDstring", mHistList.get(position).toString());
+        //myIntent.putExtra("IDstring", mHistList.get(position).toString());
+        myIntent.putExtra("IDstring", inscriptionNameList.get(position).toString());
         startActivity(myIntent);
     }
 

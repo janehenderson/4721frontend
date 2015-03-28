@@ -1,7 +1,5 @@
 package com.example.frontendian.mappprototype;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import java.util.ArrayList;
 
 /**
@@ -30,9 +28,9 @@ public class HistoryList<Inscription> extends ArrayList<Inscription> {
 
             Inscription inscr = this.get(i);
 
-            if(inscr.getName().equals(name)) {
-                return inscr;
-            } // if
+            //if(inscr.getName().equals(name)) {
+              //  return inscr;
+            //} // if
 
         } // for
 
