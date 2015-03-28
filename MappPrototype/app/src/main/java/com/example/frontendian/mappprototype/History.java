@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.LinkedList;
+
 
 public class History extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -31,6 +33,13 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     /**Removing the line below temporarily so that prototype works better for the moment,
      * but will need to make this work so that history info is saved **/
     HistoryList mHistList = HistoryList.getHistoryList();
+<<<<<<< Updated upstream
+=======
+    LinkedList<String> InscriptionNameList = new LinkedList<String>();
+
+
+
+>>>>>>> Stashed changes
     ShareActionProvider mShareActionProvider;
     int counter = 0;
 
