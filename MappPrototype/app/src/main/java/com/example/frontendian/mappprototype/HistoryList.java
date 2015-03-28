@@ -2,20 +2,19 @@ package com.example.frontendian.mappprototype;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.LinkedList;
+import java.util.Hashtable;
 
 /**
  * Created by mariahmartinshein.
  */
-public class HistoryList<Inscription> extends LinkedList implements Parcelable{
+public class HistoryList<Inscription> extends Hashtable<String, String> {
+
     private int mData;
     private int maxListSize = 50;
-    private static HistoryList main=null;
+    private static HistoryList main = null;
 
-    private HistoryList(){
+    private HistoryList(){ }
 
-    }
     public static HistoryList getHistoryList(){
         if(main==null){
             main= new HistoryList();
@@ -27,7 +26,10 @@ public class HistoryList<Inscription> extends LinkedList implements Parcelable{
         return 0;
     }
 
-    public void writeToParcel(Parcel out, int flags) {
+
+    // Parcelable stuff we probably don't need anymore
+
+/*    public void writeToParcel(Parcel out, int flags) {
         //ListIterator<String> listIterator = this.listIterator();
         //while (listIterator.hasNext()) {
           //  out.writeString(listIterator.next());
@@ -52,7 +54,7 @@ public class HistoryList<Inscription> extends LinkedList implements Parcelable{
         //mData = in.readInt();
         String[] inHist = new String[maxListSize];
         in.readStringArray(inHist);
-    }
+    }*/
 
 
 }
