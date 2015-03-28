@@ -4,6 +4,7 @@ package com.example.frontendian.mappprototype;
 // and some from http://chrisrisner.com/31-Days-of-Android--Day-5%E2%80%93Adding-Multiple-Activities-and-using-Intents
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     //LinkedList mHistList = new LinkedList();
     /**Removing the line below temporarily so that prototype works better for the moment,
      * but will need to make this work so that history info is saved **/
-    HistoryList mHistList = new HistoryList();
+    HistoryList mHistList = HistoryList.getHistoryList();
     ShareActionProvider mShareActionProvider;
     int counter = 0;
 
@@ -68,13 +69,19 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         }
 
         /////Testing notifications!!!!/////
+        Intent resultIntent = new Intent(this, InscriptionDisplay.class);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //How do we get the inscription object into the display???
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("My notification")
-                .setContentText("Hello wonderful user!");
+                .setContentText("Here is a new Notification!:")
+                .setContentIntent(resultPendingIntent);
         NotificationManager mNotifyMana =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifyMana.notify(001, mBuilder.build());
+                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotifyMana.notify(01, mBuilder.build());
     }
 
 
