@@ -7,8 +7,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
@@ -28,6 +30,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     Button mainButton;
     ListView mainListView;
     ArrayAdapter mArrayAdapter;
+    GeoHandler mGeohandler;
     //ArrayList mHistList = new ArrayList();
     //LinkedList mHistList = new LinkedList();
     /**Removing the line below temporarily so that prototype works better for the moment,
@@ -45,6 +48,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         setContentView(R.layout.activity_history);
         // 1. Access the TextView defined in layout XML
         // and then set its text
+        mGeohandler= new GeoHandler();
         mainTextView = (TextView) findViewById(R.id.main_textview);
         mainTextView.setText("Set in Java!");
         // 2. Access the Button defined in layout XML
@@ -75,19 +79,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         }
 
         /////Testing notifications!!!!/////
-        Intent resultIntent = new Intent(this, InscriptionDisplay.class);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(
-                this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //How do we get the inscription object into the display???
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("My notification")
-                .setContentText("Here is a new Notification!:")
-                .setContentIntent(resultPendingIntent);
-        NotificationManager mNotifyMana =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifyMana.notify(01, mBuilder.build());
+        LocalBroadcastManager.getInstance(this).registerReceiver(mGeohandler, new IntentFilter("Local_Geofence"));
     }
 
 
