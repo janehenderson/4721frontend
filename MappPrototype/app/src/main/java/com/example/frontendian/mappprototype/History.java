@@ -33,13 +33,9 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     /**Removing the line below temporarily so that prototype works better for the moment,
      * but will need to make this work so that history info is saved **/
     HistoryList mHistList = HistoryList.getHistoryList();
-<<<<<<< Updated upstream
-=======
+
     LinkedList<String> InscriptionNameList = new LinkedList<String>();
 
-
-
->>>>>>> Stashed changes
     ShareActionProvider mShareActionProvider;
     int counter = 0;
 
@@ -102,7 +98,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
     @Override
     public void onSaveInstanceState(Bundle outState){
-        outState.putParcelable("theList", mHistList);
+        //outState.putParcelable("theList", mHistList);
         //outState.putParcelableArrayList("key", mHistList);
         super.onSaveInstanceState(outState);
         //this method will need to be uncommented as well once we've figured out the parcelable stuff
@@ -120,12 +116,12 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         // Test the Button
-        mainTextView.setText("Button pressed!");
-        Inscription nextInscription = new Inscription();
+       // mainTextView.setText("Button pressed!");
+       // Inscription nextInscription = new Inscription();
         // Also add that value to the list shown in the ListView
-        mHistList.addFirst("Inscription " + counter);
-        mArrayAdapter.notifyDataSetChanged();
-        counter++;
+       // mHistList.addFirst("Inscription " + counter);
+      //  mArrayAdapter.notifyDataSetChanged();
+      //  counter++;
     }
 
     @Override
