@@ -49,10 +49,13 @@ public class GeoHandler extends BroadcastReceiver{
                 //ADDING TO LISTS
                 HistoryList list = HistoryList.getHistoryList();
                 list.add(inscription);
+                //ADD TO INCSRIPTIONNAMELIST
+                //inscriptionNameList.addFirst(inscription)
                 //?????
 
                 //Stuff that links this notification to an inscriptionDisplay???
                 Intent resultIntent = new Intent(context, InscriptionDisplay.class);
+                resultIntent.putExtra("IDString",name);
                 PendingIntent resultPendingIntent = PendingIntent.getActivity(
                         context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //How do we get the inscription object into the display???
