@@ -1,6 +1,6 @@
 package com.example.frontendian.mappprototype;
 
-//Much of this code was adapted from http://www.raywenderlich.com/78576/android-tutorial-for-beginners-part-2
+//Some of this code was adapted from http://www.raywenderlich.com/78576/android-tutorial-for-beginners-part-2
 // and some from http://chrisrisner.com/31-Days-of-Android--Day-5%E2%80%93Adding-Multiple-Activities-and-using-Intents
 
 import android.app.NotificationManager;
@@ -18,8 +18,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.LinkedList;
-
 
 public class History extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -28,10 +26,10 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     ListView mainListView;
     ArrayAdapter mArrayAdapter;
     //ArrayList mHistList = new ArrayList();
-    LinkedList mHistList = new LinkedList();
+    //LinkedList mHistList = new LinkedList();
     /**Removing the line below temporarily so that prototype works better for the moment,
      * but will need to make this work so that history info is saved **/
-    //HistoryList mHistList = new HistoryList();
+    HistoryList mHistList = new HistoryList();
     ShareActionProvider mShareActionProvider;
     int counter = 0;
 
@@ -73,7 +71,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("My notification")
-                .setContentText("Hello asshat");
+                .setContentText("Hello wonderful user!");
         NotificationManager mNotifyMana =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotifyMana.notify(001, mBuilder.build());
@@ -81,10 +79,19 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
 
     @Override
+    public void onRestoreInstanceState(Bundle outState){
+        outState.getParcelableArrayList("key");
+        super.onRestoreInstanceState(outState);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState){
+        outState.putParcelable("theList", mHistList);
+        //outState.putParcelableArrayList("key", mHistList);
         super.onSaveInstanceState(outState);
         //this method will need to be uncommented as well once we've figured out the parcelable stuff
         //outState.putParcelable("theList", mHistList);
+
     }
 
     @Override
@@ -98,7 +105,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     public void onClick(View v) {
         // Test the Button
         mainTextView.setText("Button pressed!");
-
+        Inscription nextInscription = new Inscription();
         // Also add that value to the list shown in the ListView
         mHistList.addFirst("Inscription " + counter);
         mArrayAdapter.notifyDataSetChanged();
