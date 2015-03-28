@@ -54,7 +54,7 @@ public class GeoHandler extends BroadcastReceiver{
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle("My notification")
-                        .setContentText("Here is a new Notification!:"+)
+                        .setContentText("Here is a new Notification!:"+name)
                         .setContentIntent(resultPendingIntent);
                 NotificationManager mNotifyMana =
                         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

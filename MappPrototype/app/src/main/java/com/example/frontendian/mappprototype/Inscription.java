@@ -10,8 +10,17 @@ public class Inscription implements Parcelable {
 
     String LOCATION;
     private int COUNTER;
+    private String name, trans, text;
 
-    public Inscription() {
+    public Inscription(){
+        name= null;
+        trans=null;
+        text=null;
+    }
+    public Inscription(String inname, String intrans, String intext) {
+        name = inname;
+        trans=intrans;
+        text=intext;
     }
 
     public Inscription(Parcel in) {
