@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * Created by mariahmartinshein.
  */
-public class HistoryList extends LinkedList implements Parcelable{
+public class HistoryList<Inscription> extends LinkedList implements Parcelable{
     private int mData;
     private int maxListSize = 50;
     private static HistoryList main=null;

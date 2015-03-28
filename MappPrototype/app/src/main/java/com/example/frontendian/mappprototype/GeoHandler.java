@@ -47,6 +47,8 @@ public class GeoHandler extends BroadcastReceiver{
                 Inscription inscription = new Inscription(name,trans,text);
 
                 //ADDING TO LISTS
+                HistoryList list = HistoryList.getHistoryList();
+                list.add(inscription);
                 //?????
 
                 //Stuff that links this notification to an inscriptionDisplay???
