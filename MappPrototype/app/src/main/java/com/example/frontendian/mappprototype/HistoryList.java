@@ -2,12 +2,12 @@ package com.example.frontendian.mappprototype;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.Hashtable;
+import java.util.ArrayList;
 
 /**
  * Created by mariahmartinshein.
  */
-public class HistoryList<Inscription> extends Hashtable<String, String> {
+public class HistoryList<Inscription> extends ArrayList<Inscription> {
 
     private int mData;
     private int maxListSize = 50;
