@@ -16,20 +16,40 @@ public class HistoryList<Inscription> extends ArrayList<Inscription> {
     private HistoryList(){ }
 
     public static HistoryList getHistoryList(){
-        if(main==null){
-            main= new HistoryList();
+        if(main == null){
+            main = new HistoryList();
         }
         return main;
     }
 
-    public int describeContents() {
-        return 0;
-    }
+
+    // returns an Inscription whose name matches the input string
+    public Inscription getInscription(String name) {
+
+        for(int i = 0; i < this.size(); i++) {
+
+            Inscription inscr = this.get(i);
+
+            if(inscr.getName().equals(name)) {
+                return inscr;
+            } // if
+
+        } // for
+
+        return null;
+
+    } // getInscription method
 
 
     // Parcelable stuff we probably don't need anymore
 
-/*    public void writeToParcel(Parcel out, int flags) {
+/*
+
+     public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
         //ListIterator<String> listIterator = this.listIterator();
         //while (listIterator.hasNext()) {
           //  out.writeString(listIterator.next());

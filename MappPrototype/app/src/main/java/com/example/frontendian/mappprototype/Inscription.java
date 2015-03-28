@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by Jane on 2015-03-19.
  */
-public class Inscription implements Parcelable {
+public class Inscription {
 
     String LOCATION;
     private int COUNTER;
@@ -28,7 +28,23 @@ public class Inscription implements Parcelable {
         COUNTER = 0;
     }
 
-    public static final Parcelable.Creator<Inscription> CREATOR = new Parcelable.Creator<Inscription>() {
+    public String getName() {
+        return name;
+    } // getName
+
+    public String getTrans() {
+        return trans;
+    } // getTrans method
+
+    public String getText() {
+        return text;
+    } // getText method
+
+
+
+    // Parcelable stuff we no longer need is commented out below
+
+   /* public static final Parcelable.Creator<Inscription> CREATOR = new Parcelable.Creator<Inscription>() {
         public Inscription createFromParcel(Parcel in) {
             return new Inscription(in);
         }
@@ -50,7 +66,7 @@ public class Inscription implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(LOCATION);
         dest.writeInt(COUNTER);
-    }
+    } */
 
     public int getCount() {
         return COUNTER;
