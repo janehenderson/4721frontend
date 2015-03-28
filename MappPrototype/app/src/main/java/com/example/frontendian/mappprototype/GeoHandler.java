@@ -32,13 +32,11 @@ public class GeoHandler extends BroadcastReceiver{
         //Test2: Create a notification.
         //If we have entered the geofence or are still in it.
         //We can kinda assume that this is true.
-        intent.getStringExtra("tag"); // c or l if l do stuff.
+
 
 
         //TODO update with inscription data.
-        if(intent.getStringExtra("tag").equals("l")) {//do stuff if local geofence.
-            if (intent.getIntExtra("transitiontype", -1) == Geofence.GEOFENCE_TRANSITION_DWELL ||
-                    intent.getIntExtra("transitiontype", -1) == Geofence.GEOFENCE_TRANSITION_ENTER) {
+
                 //Stuff happening when we're making the notification.
                 //CREATING THE INSCRIPTION
                 String trans = intent.getStringExtra("Translation");
@@ -68,8 +66,7 @@ public class GeoHandler extends BroadcastReceiver{
                 NotificationManager mNotifyMana =
                         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotifyMana.notify(01, mBuilder.build());
-            }
-        }
+
         Log.w("Receving", "Received exit");
 
 
