@@ -48,6 +48,8 @@ public class GeoHandler extends BroadcastReceiver{
                 HistoryList list = HistoryList.getHistoryList();
                 list.add(inscription);
                 //ADD TO INCSRIPTIONNAMELIST
+                InscriptionNameList nameList = InscriptionNameList.getList();
+                nameList.addFirst(name);
                 //inscriptionNameList.addFirst(inscription)
                 //?????
 
