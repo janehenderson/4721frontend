@@ -11,6 +11,8 @@ import android.widget.TextView;
 public class InscriptionDisplay extends ActionBarActivity {
 
     TextView textView1;
+    HistoryList<Inscription> histList = HistoryList.getHistoryList();
+    Inscription currIns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,12 @@ public class InscriptionDisplay extends ActionBarActivity {
         textView1 = (TextView) findViewById(R.id.inscr_info);
         Intent myIntent = getIntent();
 
-        textView1.setText(myIntent.getStringExtra("IDstring"));
+        String nameString = myIntent.getStringExtra("IDstring");
+
+        textView1.setText(nameString);
+
+        currIns = histList.getInscription(nameString);
+        
 
 
     }
