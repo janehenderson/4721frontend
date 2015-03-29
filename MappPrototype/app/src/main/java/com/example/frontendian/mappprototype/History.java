@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,6 +48,9 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.MainLayout);
+        layout.setBackgroundColor(Color.rgb(62, 58, 110));
+
         // 1. Access the TextView defined in layout XML
         // and then set its text
         mGeohandler= new GeoHandler();
@@ -64,7 +69,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         //mArrayAdapter = new ArrayAdapter(this,
           //      android.R.layout.simple_list_item_1,
             //    mHistList);
-        mArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, inscriptionNameList);
+        mArrayAdapter = new ArrayAdapter(this, R.layout.custom_simple, inscriptionNameList);
 
         // Set the ListView to use the ArrayAdapter
         mainListView.setAdapter(mArrayAdapter);
