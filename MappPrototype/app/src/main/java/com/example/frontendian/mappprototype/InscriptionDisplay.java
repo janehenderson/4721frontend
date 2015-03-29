@@ -2,6 +2,7 @@ package com.example.frontendian.mappprototype;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 
 public class InscriptionDisplay extends ActionBarActivity {
 
-    TextView textView1;
-    HistoryList<Inscription> histList = HistoryList.getHistoryList();
+    TextView nameTV;
+    TextView translationTV;
+    TextView textTV;
+    HistoryList histList = HistoryList.getHistoryList();
     Inscription currIns;
 
     @Override
@@ -20,14 +23,28 @@ public class InscriptionDisplay extends ActionBarActivity {
         setContentView(R.layout.activity_inscription_display);
 
         // get information passed from history activity
-        textView1 = (TextView) findViewById(R.id.inscr_info);
+        nameTV = (TextView) findViewById(R.id.inscr_name);
+        translationTV = (TextView) findViewById(R.id.inscr_translation);
+        textTV = (TextView) findViewById(R.id.inscr_text);
+
         Intent myIntent = getIntent();
-
+/*
+here for when we actually send inscriptons to the display
         String nameString = myIntent.getStringExtra("IDstring");
+        Inscription inscript =  HistoryList.getHistoryList().getInscription(nameString);
+        String tranString = inscript.getTrans();
+        String textString = inscript.getText();
 
-        textView1.setText(nameString);
+        nameTV.setText(nameString);
+        translationTV.setText(tranString);
+        textTV.setText(textString);
+*/
+        nameTV.setText("name");
 
-        currIns = histList.getInscription(nameString);
+        translationTV.setText("translation");
+
+        textTV.setText("text");
+        //currIns = histList.getInscription(nameString);
         
 
 
@@ -49,7 +66,8 @@ public class InscriptionDisplay extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
             return true;
         }
 

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 /**
  * Created by mariahmartinshein.
  */
-public class HistoryList<Inscription> extends ArrayList<Inscription> {
-
+public class HistoryList extends ArrayList{
+//Cannot have HistoryList<Inscription> due to "type erasure"
+//what happens is that we can't use any inscription methods in this class....
     private int mData;
     private int maxListSize = 50;
     private static HistoryList main = null;
@@ -26,11 +27,10 @@ public class HistoryList<Inscription> extends ArrayList<Inscription> {
 
         for(int i = 0; i < this.size(); i++) {
 
-            Inscription inscr = this.get(i);
-
-            //if(inscr.getName().equals(name)) {
-              //  return inscr;
-            //} // if
+            Inscription inscr = (Inscription) this.get(i);
+            if(inscr.getName().equals(name)) {
+                return inscr;
+            } // if
 
         } // for
 

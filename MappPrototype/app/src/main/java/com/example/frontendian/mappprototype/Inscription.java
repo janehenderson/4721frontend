@@ -22,12 +22,6 @@ public class Inscription {
         trans=intrans;
         text=intext;
     }
-
-    public Inscription(Parcel in) {
-        LOCATION = in.readString();
-        COUNTER = 0;
-    }
-
     public String getName() {
         return name;
     } // getName
@@ -40,6 +34,12 @@ public class Inscription {
         return text;
     } // getText method
 
+
+    /*public Inscription(Parcel in) {
+        LOCATION = in.readString();
+        COUNTER = 0;
+    }
+*/
 
 
     // Parcelable stuff we no longer need is commented out below

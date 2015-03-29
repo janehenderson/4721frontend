@@ -8,6 +8,8 @@
     <string name="switch1">Add inscription</string>
     <string name="title_activity_inscription_display">Inscription Display</string>
     <string name="hello_world">Hello world!</string>
-    <string name="inscription_view">Inscription info here...</string>
+    <string name="inscription_view_Name">Inscription Name here...</string>
+    <string name="inscription_view_Translation">Inscription Translation here....</string>
+    <string name="inscription_view_Text">Inscription Text here....</string>
 
 </resources>
