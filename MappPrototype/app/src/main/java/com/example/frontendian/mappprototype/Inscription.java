@@ -14,8 +14,8 @@ public class Inscription {
 
     public Inscription(){
         name= null;
-        trans=null;
-        text=null;
+        trans= null;
+        text= null;
     }
     public Inscription(String inname, String intrans, String intext) {
         name = inname;

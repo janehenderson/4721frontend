@@ -31,20 +31,12 @@ public class InscriptionDisplay extends ActionBarActivity {
 /*
 here for when we actually send inscriptons to the display
         String nameString = myIntent.getStringExtra("IDstring");
-        Inscription inscript =  HistoryList.getHistoryList().getInscription(nameString);
-        String tranString = inscript.getTrans();
-        String textString = inscript.getText();
 
         nameTV.setText(nameString);
         translationTV.setText(tranString);
         textTV.setText(textString);
 */
-        nameTV.setText("name");
 
-        translationTV.setText("translation");
-
-        textTV.setText("text");
-        //currIns = histList.getInscription(nameString);
         
 
 

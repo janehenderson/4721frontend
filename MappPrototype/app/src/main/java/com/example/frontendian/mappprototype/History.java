@@ -113,7 +113,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
        // Inscription nextInscription = new Inscription();
         // Also add that value to the list shown in the ListView
         inscriptionNameList.addFirst("Name " + counter);
-       // mHistList.addFirst("Inscription " + counter);
+        mHistList.add(new Inscription("Name " + counter, "badText", "badTrans"));
         mArrayAdapter.notifyDataSetChanged();
         counter++;
     }
