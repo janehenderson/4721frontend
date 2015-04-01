@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="20dp"
+    tools:context="com.example.frontendian.mappprototype.InscriptionDisplay"
+    android:weightSum="1"
+    android:id="@+id/DisplayLayout"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:padding="20dp">
+
+    <TextView android:text="@string/inscription_view_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:id="@+id/inscr_name"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:focusableInTouchMode="false"
+        android:fontFamily="Roboto-Bold"
+        android:textSize="22sp"
+        android:textIsSelectable="true" />
+
+    <TextView android:text="@string/inscription_view_Text"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:id="@+id/inscr_translation"
+        android:focusableInTouchMode="false"
+        android:textColor="#ffffff"
+        android:fontFamily="Roboto Bold"
+        android:textSize="18sp"
+        android:textIsSelectable="false" />
+
+    <TextView android:text="@string/inscription_view_Translation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/inscr_text"
+        android:fontFamily="Roboto-Bold"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</LinearLayout>
