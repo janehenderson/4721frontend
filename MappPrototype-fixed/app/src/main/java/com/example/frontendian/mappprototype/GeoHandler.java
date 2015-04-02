@@ -19,6 +19,9 @@ public class GeoHandler extends BroadcastReceiver{
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        Log.w("Receving", "Received exit");
+
         //So, the observable class has noticed a geofence, updated us, and has sent us some data.
         //Question 1: what kind of object will the data be?
 
@@ -69,7 +72,7 @@ public class GeoHandler extends BroadcastReceiver{
                         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotifyMana.notify(01, mBuilder.build());
 
-        Log.w("Receving", "Received exit");
+
 
 
 
