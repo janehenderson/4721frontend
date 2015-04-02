@@ -1,7 +1,6 @@
 package com.example.frontendian.mappprototype;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+
 
 /**
  * Created by Jane on 2015-03-19.

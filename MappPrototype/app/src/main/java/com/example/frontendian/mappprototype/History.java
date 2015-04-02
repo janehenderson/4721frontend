@@ -3,17 +3,13 @@ package com.example.frontendian.mappprototype;
 //Some of this code was adapted from http://www.raywenderlich.com/78576/android-tutorial-for-beginners-part-2
 // and some from http://chrisrisner.com/31-Days-of-Android--Day-5%E2%80%93Adding-Multiple-Activities-and-using-Intents
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,10 +17,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import java.util.LinkedList;
-
 
 public class History extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
