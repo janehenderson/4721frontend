@@ -1,11 +1,13 @@
 package com.example.frontendian.mappprototype;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -21,7 +23,8 @@ public class InscriptionDisplay extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_display);
-
+        LinearLayout layout2 = (LinearLayout) findViewById(R.id.DisplayLayout);
+        layout2.setBackgroundColor(Color.rgb(62, 58, 110));
         // get information passed from history activity
         nameTV = (TextView) findViewById(R.id.inscr_name);
         translationTV = (TextView) findViewById(R.id.inscr_translation);

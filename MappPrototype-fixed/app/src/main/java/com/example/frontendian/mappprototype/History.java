@@ -66,6 +66,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         LinearLayout layout = (LinearLayout) findViewById(R.id.MainLayout);
         layout.setBackgroundColor(Color.rgb(62, 58, 110));
 
+
         // 1. Access the TextView defined in layout XML
         // and then set its text
         mGeohandler= new GeoHandler();
