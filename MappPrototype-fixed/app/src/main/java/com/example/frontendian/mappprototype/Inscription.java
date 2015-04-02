@@ -1,8 +1,5 @@
 package com.example.frontendian.mappprototype;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
  * Created by Jane on 2015-03-19.
  */
@@ -11,16 +8,19 @@ public class Inscription {
     String LOCATION;
     private int COUNTER;
     private String name, trans, text;
+    private boolean seen;
 
     public Inscription(){
         name= null;
         trans= null;
         text= null;
+        seen = false;
     }
     public Inscription(String inname, String intrans, String intext) {
         name = inname;
         trans=intrans;
         text=intext;
+        seen = false;
     }
     public String getName() {
         return name;
@@ -34,7 +34,13 @@ public class Inscription {
         return text;
     } // getText method
 
+    public void setSeen(boolean toSet){
+        seen = toSet;
+    }
 
+    public boolean isSeen(){
+        return seen;
+    }
     /*public Inscription(Parcel in) {
         LOCATION = in.readString();
         COUNTER = 0;
