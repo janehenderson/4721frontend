@@ -28,12 +28,18 @@ import java.util.LinkedList;
 
 
 public class History extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    //Front end code
+    private final String TAG = "HISTORY";
+    private BackendController backendController = null;
+    ArrayList mNameList = new ArrayList();
 
+    //Our code
     TextView mainTextView;
     Button mainButton;
     ListView mainListView;
     ArrayAdapter mArrayAdapter;
     GeoHandler mGeohandler;
+
     //ArrayList mHistList = new ArrayList();
     //LinkedList mHistList = new LinkedList();
     /**Removing the line below temporarily so that prototype works better for the moment,
@@ -93,8 +99,6 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         // 5. Set this activity to react to list items being pressed
         mainListView.setOnItemClickListener(this);
 
-
-
         /////Testing notifications!!!!/////
         LocalBroadcastManager.getInstance(this).registerReceiver(mGeohandler, new IntentFilter("Local_Geofence"));
     }
@@ -151,8 +155,10 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         mainTextView.setText("Button pressed!");
        // Inscription nextInscription = new Inscription();
         // Also add that value to the list shown in the ListView
+        //More stuff than in bakHistr
         inscriptionNameList.addFirst("Name " + counter);
         mHistList.add(new Inscription("Name " + counter, "badText", "badTrans"));
+
         mArrayAdapter.notifyDataSetChanged();
         counter++;
     }
