@@ -22,6 +22,10 @@ public class Inscription {
         text=intext;
         seen = false;
     }
+
+    public String toString(){
+        return getName();
+    }
     public String getName() {
         return name;
     } // getName

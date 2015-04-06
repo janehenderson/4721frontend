@@ -28,8 +28,6 @@ import android.widget.TextView;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 
 
 
@@ -53,7 +51,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
      * but will need to make this work so that history info is saved **/
     HistoryList mHistList = HistoryList.getHistoryList();
 
-    LinkedList<String> inscriptionNameList = new LinkedList<String>();
+    //LinkedList<String> inscriptionNameList = new LinkedList<String>();
 
     ShareActionProvider mShareActionProvider;
     int counter = 0;
@@ -73,8 +71,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
             //this method will need to be uncommented as well once we've figured out the parcelable stuff
             //mHistList = savedInstanceState.getParcelable("theList");
             ArrayList inscriptionNameArray = savedInstanceState.getStringArrayList("key");
-            inscriptionNameList = new LinkedList(Arrays.asList(inscriptionNameArray));
-            Log.i("info","This is inscription list: " + inscriptionNameList.toString());
+            //inscriptionNameList = new LinkedList(Arrays.asList(inscriptionNameArray));
+            //Log.i("info","This is inscription list: " + inscriptionNameList.toString());
 
         }
 
@@ -108,7 +106,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         //mArrayAdapter = new ArrayAdapter(this,
           //      android.R.layout.simple_list_item_1,
             //    mHistList);
-        mArrayAdapter = new ArrayAdapter(this, R.layout.custom_simple, inscriptionNameList);
+        //mArrayAdapter = new ArrayAdapter(this, R.layout.custom_simple, inscriptionNameList);
+        mArrayAdapter = new ArrayAdapter(this, R.layout.custom_simple, mHistList);
 
         // Set the ListView to use the ArrayAdapter
         mainListView.setAdapter(mArrayAdapter);
@@ -143,11 +142,11 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         super.onSaveInstanceState(outState);
 
-        ArrayList<String> arrayInscriptionNameList = new ArrayList<String>();
+        /*ArrayList<String> arrayInscriptionNameList = new ArrayList<String>();
         for (String name : inscriptionNameList) {
             arrayInscriptionNameList.add(name);
         }
-        outState.putStringArrayList("key", arrayInscriptionNameList);
+        outState.putStringArrayList("key", arrayInscriptionNameList);*/
 
 
         //this method will need to be uncommented as well once we've figured out the parcelable stuff
@@ -187,8 +186,9 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         //On click, open the individual inscription view
         Intent myIntent = new Intent(getApplicationContext(), InscriptionDisplay.class);
         // pass information about which item selected to inscription display activity
-        //myIntent.putExtra("IDstring", mHistList.get(position).toString());
-        myIntent.putExtra("IDstring", inscriptionNameList.get(position).toString());
+        myIntent.putExtra("IDstring", mHistList.get(position).toString());
+        //myIntent.putExtra("IDstring", inscriptionNameList.get(position).toString());
+
         startActivity(myIntent);
     }
 
@@ -285,13 +285,13 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         //ID is Translation for now
         String trans = "Translation";
         String text = "Text";
-        String name = "Name"+mHistList.getCount();
+        String name = "Name "+mHistList.getCount();
         Log.i("Geohandler", "Got ID,Text, Name");
         Inscription inscription = new Inscription(name, trans, text);
         Log.i("Geohandler", "Created Inscription");
         Log.i("Geohandler", "Adding to lists");
         mHistList.add(inscription);
-        inscriptionNameList.addFirst(name);
+        //inscriptionNameList.addFirst(name);
         Log.i("Geohandler", "Added to lists Completed");
         //?????
 
