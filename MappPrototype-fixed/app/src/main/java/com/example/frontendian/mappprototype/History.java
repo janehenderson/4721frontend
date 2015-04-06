@@ -30,12 +30,11 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 
-
 public class History extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     //Front end code
     private final String TAG = "HISTORY";
     private BackendController backendController = null;
-    ArrayList mNameList = new ArrayList();
+    //ArrayList mNameList = new ArrayList();
 
     //Our code
     TextView mainTextView;
@@ -290,7 +289,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         Inscription inscription = new Inscription(name, trans, text);
         Log.i("Geohandler", "Created Inscription");
         Log.i("Geohandler", "Adding to lists");
-        mHistList.add(inscription);
+        mHistList.addFirst(inscription); //changed from add
         //inscriptionNameList.addFirst(name);
         Log.i("Geohandler", "Added to lists Completed");
         //?????

@@ -2,12 +2,12 @@ package com.example.frontendian.mappprototype;
 
 import android.util.Log;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by mariahmartinshein.
  */
-public class HistoryList extends ArrayList{
+public class HistoryList extends LinkedList {
 //Cannot have HistoryList<Inscription> due to "type erasure"
 //what happens is that we can't use any inscription methods in this class....
     private int mData;
