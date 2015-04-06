@@ -62,6 +62,13 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("info", "did we enter onCreate");
         // display old saved history in the list somehow
+        //Isnor - Initialize the backendController
+        if (backendController == null) {
+            backendController = new BackendController(this);
+        }
+
+        Log.i(TAG, "CREATED HISTORY");
+
         if(savedInstanceState != null){
             //this method will need to be uncommented as well once we've figured out the parcelable stuff
             //mHistList = savedInstanceState.getParcelable("theList");
@@ -71,20 +78,16 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         }
 
-
         super.onCreate(savedInstanceState);
 
+
+        Log.i(TAG, "CREATED Saved Instance");
 
         setContentView(R.layout.activity_history);
         LinearLayout layout = (LinearLayout) findViewById(R.id.MainLayout);
         layout.setBackgroundColor(Color.rgb(62, 58, 110));
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter("BEC"));
-        //Isnor - Initialize the backendController
-        if (backendController == null) {
-            backendController = new BackendController(this);
-        }
-
 
         // 1. Access the TextView defined in layout XML
         // and then set its text
@@ -94,6 +97,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         // and listen for it here
         mainButton = (Button) findViewById(R.id.first_switch);
         mainButton.setOnClickListener(this);
+
+        Log.i(TAG, "CREATED Text Stuff");
 
         // 4. Access the ListView
         mainListView = (ListView) findViewById(R.id.main_listview);
@@ -111,6 +116,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         // 5. Set this activity to react to list items being pressed
         mainListView.setOnItemClickListener(this);
 
+        Log.i(TAG, "History is done");
 
     }
 
@@ -240,11 +246,12 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
                 String trans = intent.getStringExtra("ID");
                 String text = intent.getStringExtra("Text");
                 String name = intent.getStringExtra("Name");
-                Log.i("Geohandler", "Got ID,Text, Name");
+                Log.i("Geohandler", "Got ID,Text, Name = ("+trans+","+text+","+name+")");
                 Inscription inscription = new Inscription(name, trans, text);
                 Log.i("Geohandler", "Created Inscription");
                 Log.i("Geohandler", "Adding to lists");
                 mHistList.add(inscription);
+                Log.i("LOOKATMEIMMMR.EESEEKS", "Inscription added: "+(mHistList.getInscription(name)!=null)+", name:"+name);
                 inscriptionNameList.addFirst(name);
                 Log.i("Geohandler", "Added to lists Completed");
                 //?????
@@ -272,4 +279,39 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         }
     };
+
+    private void testMethod(Context context, Intent intent){
+        Log.i("GeoHandler", "started");
+        //ID is Translation for now
+        String trans = "ID";
+        String text = "Text";
+        String name = "Name";
+        Log.i("Geohandler", "Got ID,Text, Name");
+        Inscription inscription = new Inscription(name, trans, text);
+        Log.i("Geohandler", "Created Inscription");
+        Log.i("Geohandler", "Adding to lists");
+        mHistList.add(inscription);
+        inscriptionNameList.addFirst(name);
+        Log.i("Geohandler", "Added to lists Completed");
+        //?????
+
+        Log.i("Geohandler", "Creating Notification");
+        Intent resultIntent = new Intent(context, InscriptionDisplay.class);
+        resultIntent.putExtra("IDString", name);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //How do we get the inscription object into the display???
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("My notification")
+                .setContentText("Here is a new Notification!:" + name)
+                .setContentIntent(resultPendingIntent);
+        NotificationManager mNotifyMana =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotifyMana.notify(01, mBuilder.build());
+        Log.i("Geohandler", "Finished");
+        mArrayAdapter.notifyDataSetChanged();
+        Log.i("GeoHandler","Notified array adapter");
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.frontendian.mappprototype;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -28,10 +30,15 @@ public class HistoryList extends ArrayList{
         for(int i = 0; i < this.size(); i++) {
 
             Inscription inscr = (Inscription) this.get(i);
-            if(inscr.getName().equals(name)) {
-                return inscr;
-            } // if
-
+            if(inscr.getName()!=null) {
+                Log.i("MR.MEESEEKS","We got the inscription name!");
+                if (inscr.getName().equals(name)) {
+                    return inscr;
+                } // if
+            }
+            else{
+                Log.e("MR.MEESEEKS", "HOLYSHIT INSCRIPTIONS BE BROKE Y'ALL");
+            }
         } // for
 
         return null;

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -37,13 +38,17 @@ public class InscriptionDisplay extends ActionBarActivity {
 
         textTV.setText("text");
         String nameString = myIntent.getStringExtra("IDstring");
-        currIns =  histList.getInscription(nameString);
-        String tranString = currIns.getTrans();
-        String textString = currIns.getText();
 
-        nameTV.setText(nameString);
-        translationTV.setText(tranString);
-        textTV.setText(textString);
+        currIns =  histList.getInscription(nameString);
+        if(currIns!=null) {
+            String tranString = currIns.getTrans();
+            String textString = currIns.getText();
+            nameTV.setText(nameString);
+            translationTV.setText(tranString);
+            textTV.setText(textString);
+            Log.i("IncsriptionDisplay", "Got a null inscription");
+        }
+
 
         
 
