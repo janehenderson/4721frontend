@@ -40,17 +40,23 @@ public class InscriptionDisplay extends ActionBarActivity {
         String nameString = myIntent.getStringExtra("IDstring");
 
         currIns =  histList.getInscription(nameString);
+        Log.i("DISPLAY", "Got the Inscription via name: "+nameString);
         if(currIns!=null) {
             String tranString = currIns.getTrans();
             String textString = currIns.getText();
             nameTV.setText(nameString);
             translationTV.setText(tranString);
             textTV.setText(textString);
-            Log.i("IncsriptionDisplay", "Got a null inscription");
         }
+        else{
+
+            Log.i("IncsriptionDisplay", "Got a null inscription");
+
+        }
+        Log.i("IncsriptionDisplay", "Successful display");
 
 
-        
+
 
 
     }

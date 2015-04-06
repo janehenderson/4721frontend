@@ -132,6 +132,7 @@ public class BackendController implements GoogleApiClient.ConnectionCallbacks,
                         localIntent.putExtra("ID", ID);
                         localIntent.putExtra("Name", curr.getName());
                         localIntent.putExtra("Text", curr.getArtifactText());
+                        Log.i(TAG, "SENT BROADCAST (ID,Name,Text) = ("+ID+","+curr.getName()+","+curr.getArtifactText()+")");
                         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                     }
                 } else if (transitionType == Geofence.GEOFENCE_TRANSITION_EXIT) {

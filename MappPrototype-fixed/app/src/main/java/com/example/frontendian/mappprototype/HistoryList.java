@@ -13,16 +13,22 @@ public class HistoryList extends ArrayList{
     private int mData;
     private int maxListSize = 50;
     private static HistoryList main = null;
-
+    private static int counter;
     private HistoryList(){ }
 
     public static HistoryList getHistoryList(){
         if(main == null){
             main = new HistoryList();
+            counter=0;
         }
         return main;
     }
-
+    public void updateCount(){
+        counter++;
+    }
+    public int getCount(){
+        return counter;
+    }
 
     // returns an Inscription whose name matches the input string
     public Inscription getInscription(String name) {
@@ -31,7 +37,7 @@ public class HistoryList extends ArrayList{
 
             Inscription inscr = (Inscription) this.get(i);
             if(inscr.getName()!=null) {
-                Log.i("MR.MEESEEKS","We got the inscription name!");
+               // Log.i("MR.MEESEEKS","We got the inscription name!");
                 if (inscr.getName().equals(name)) {
                     return inscr;
                 } // if
