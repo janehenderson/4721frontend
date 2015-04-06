@@ -92,7 +92,6 @@ public class bakHistr extends ActionBarActivity implements View.OnClickListener,
                 mNameList.add(currGeofenceID);
                 mArrayAdapter.notifyDataSetChanged();
             }
-
         }
     };
 

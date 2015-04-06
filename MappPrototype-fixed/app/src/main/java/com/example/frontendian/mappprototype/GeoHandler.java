@@ -15,66 +15,44 @@ import com.google.android.gms.location.Geofence;
  * Created by Filip on 17/03/2015.
  * Need to first add this observer to the observable class
  */
-public class GeoHandler extends BroadcastReceiver{
-
+public class GeoHandler extends BroadcastReceiver {
+// ID, Name, Text
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.w("Receving", "Received exit");
+        Log.i("GeoHandler", "started");
+        InscriptionNameList nameList = InscriptionNameList.getList();
+        HistoryList list = HistoryList.getHistoryList();
 
-        //So, the observable class has noticed a geofence, updated us, and has sent us some data.
-        //Question 1: what kind of object will the data be?
+        //ID is Translation for now
+        String trans = intent.getStringExtra("ID");
+        String text = intent.getStringExtra("Text");
+        String name = intent.getStringExtra("Name");
+        Log.i("Geohandler", "Got ID,Text, Name");
+        Inscription inscription = new Inscription(name, trans, text);
+        Log.i("Geohandler", "Created Inscription");
+        Log.i("Geohandler", "Adding to lists");
+        list.add(inscription);
+        nameList.addFirst(name);
+        Log.i("Geohandler", "Added to lists Completed");
+        //?????
 
-        ///transitiontype : int, describes if its an enter, dwell, or exit.
-        ///TODO import geofence library
-        //intent.getExtra();
-        //tag for if it is city or local. so ignore if not local.
-        //Geofence.GEOFENCE_TRANSITION_DWELL or exit or enter.
+        Log.i("Geohandler", "Creating Notification");
+        Intent resultIntent = new Intent(context, InscriptionDisplay.class);
+        resultIntent.putExtra("IDString", name);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //How do we get the inscription object into the display???
 
-        //Test succesful. can notify.
-        //Test2: Create a notification.
-        //If we have entered the geofence or are still in it.
-        //We can kinda assume that this is true.
-
-
-
-        //TODO update with inscription data.
-
-                //Stuff happening when we're making the notification.
-                //CREATING THE INSCRIPTION
-                String trans = intent.getStringExtra("Translation");
-                String text = intent.getStringExtra("Text");
-                String name = intent.getStringExtra("Name");
-                Inscription inscription = new Inscription(name,trans,text);
-
-                //ADDING TO LISTS
-                HistoryList list = HistoryList.getHistoryList();
-                list.add(inscription);
-                //ADD TO INCSRIPTIONNAMELIST
-                InscriptionNameList nameList = InscriptionNameList.getList();
-                nameList.addFirst(name);
-                //inscriptionNameList.addFirst(inscription)
-                //?????
-
-                //Stuff that links this notification to an inscriptionDisplay???
-                Intent resultIntent = new Intent(context, InscriptionDisplay.class);
-                resultIntent.putExtra("IDString",name);
-                PendingIntent resultPendingIntent = PendingIntent.getActivity(
-                        context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                //How do we get the inscription object into the display???
-
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("My notification")
-                        .setContentText("Here is a new Notification!:"+name)
-                        .setContentIntent(resultPendingIntent);
-                NotificationManager mNotifyMana =
-                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotifyMana.notify(01, mBuilder.build());
-
-
-
-
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("My notification")
+                .setContentText("Here is a new Notification!:" + name)
+                .setContentIntent(resultPendingIntent);
+        NotificationManager mNotifyMana =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotifyMana.notify(01, mBuilder.build());
+        Log.i("Geohandler", "Finished");
 
     }
 }
