@@ -84,7 +84,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
         LinearLayout layout = (LinearLayout) findViewById(R.id.MainLayout);
         layout.setBackgroundColor(Color.rgb(62, 58, 110));
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter("BEC"));
+                new IntentFilter("Geofence"));
 
         // 1. Access the TextView defined in layout XML
         // and then set its text
@@ -113,11 +113,11 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         // 5. Set this activity to react to list items being pressed
         mainListView.setOnItemClickListener(this);
-
+        //Only for testing. Creates new inscriptions with unique names.
         Log.i(TAG, "History is done");
         if(mHistList.getCount()==0) {
             testMethod(this, this.getIntent());
-            Log.i(TAG, "MAde notification");
+            Log.i(TAG, "Made notification");
         }
         else{
             Log.i(TAG, "Did not make notification");
@@ -171,6 +171,9 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     }
 
     @Override
+    /**
+     * On every click it creates a new inscription and notification.
+     */
     public void onClick(View v) {
         testMethod(this, this.getIntent());
     }
@@ -232,50 +235,51 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            /*
             // Get extra data included in the Intent
-            String currGeofenceID = intent.getStringExtra(Constants.ID);
-            Log.i(TAG + " RCV", "Got message: " + currGeofenceID);
-            //Code from onCLick()
-            if(currGeofenceID.substring(0,1).equals("l")) {
-                Log.i("GeoHandler", "started");
-                //ID is Translation for now
-                String trans = intent.getStringExtra("ID");
-                if(trans!=null) {
-                    String text = intent.getStringExtra("Text");
-                    String name = intent.getStringExtra("Name");
-                    Log.i("Geohandler", "Got ID,Text, Name = (" + trans + "," + text + "," + name + ")");
-                    Inscription inscription = new Inscription(name, trans, text);
-                    Log.i("Geohandler", "Created Inscription");
-                    Log.i("Geohandler", "Adding to lists");
-                    mHistList.add(inscription);
-                    Log.i("LOOKATMEIMMMR.EESEEKS", "Inscription added: " + (mHistList.getInscription(name) != null) + ", name:" + name);
-                    inscriptionNameList.addFirst(name);
-                    Log.i("Geohandler", "Creating Notification");
-                    Intent resultIntent = new Intent(context, InscriptionDisplay.class);
-                    resultIntent.putExtra("IDString", name);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(
-                            context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    //How do we get the inscription object into the display???
 
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                            .setSmallIcon(R.drawable.ic_launcher)
-                            .setContentTitle("My notification")
-                            .setContentText("Here is a new Notification!:" + name)
-                            .setContentIntent(resultPendingIntent);
-                    NotificationManager mNotifyMana =
-                            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                    mNotifyMana.notify(01, mBuilder.build());
-                    Log.i("Geohandler", "Finished");
-                    mArrayAdapter.notifyDataSetChanged();
-                    Log.i("GeoHandler", "Notified array adapter");
-                }//if name/id isnt null
-            Log.e("GeoHandler", "Bad Transmission. Null data. ID IS "+ trans);
-            }//if local tag.
+            Log.i(TAG, "Entered onReceive in History");
 
-        *///above code removed until back end bugs worked out.
+            if(intent.getStringExtra("sender").equals("BEC")) {
+                String currGeofenceID = intent.getStringExtra("ID");
+                Log.i(TAG + " RCV", "Got message: " + currGeofenceID);
+                //Code from onCLick()
+                if (currGeofenceID.substring(0, 1).equals("l")) {
+                    Log.i("GeoHandler", "started");
+                    //ID is Translation for now
+                    String trans = intent.getStringExtra("translation");
+                    if (trans != null) {
+                        String text = intent.getStringExtra("Text");
+                        String name = intent.getStringExtra("Name");
+                        Log.i("Geohandler", "Got ID,Text, Name = (" + trans + "," + text + "," + name + ")");
+                        Inscription inscription = new Inscription(name, trans, text);
+                        Log.i("Geohandler", "Created Inscription");
+                        Log.i("Geohandler", "Adding to lists");
+                        mHistList.addFirst(inscription);
+                        Log.i("LOOKATMEIMMMR.EESEEKS", "Inscription added: " + (mHistList.getInscription(name) != null) + ", name:" + name);
+                        Log.i("Geohandler", "Creating Notification");
+                        Intent resultIntent = new Intent(context, InscriptionDisplay.class);
+                        resultIntent.putExtra("IDString", name);
+                        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                                context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        //How do we get the inscription object into the display???
+
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                                .setSmallIcon(R.drawable.ic_launcher)
+                                .setContentTitle("My notification")
+                                .setContentText("Here is a new Notification!:" + name)
+                                .setContentIntent(resultPendingIntent);
+                        NotificationManager mNotifyMana =
+                                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotifyMana.notify(01, mBuilder.build());
+                        Log.i("Geohandler", "Finished");
+                        mArrayAdapter.notifyDataSetChanged();
+                        Log.i("GeoHandler", "Notified array adapter");
+                    }//if name/id isnt null
+                    else {Log.e("GeoHandler", "Bad Translation. Null data. ID IS " + trans);}
+                }//if local tag.
+            }
+
         }
-
     };
 
 
