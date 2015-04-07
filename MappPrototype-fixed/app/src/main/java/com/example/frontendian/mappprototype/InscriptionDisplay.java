@@ -8,17 +8,20 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 
-public class InscriptionDisplay extends ActionBarActivity {
+public class InscriptionDisplay extends ActionBarActivity implements View.OnClickListener {
 
     TextView nameTV;
     TextView translationTV;
     TextView textTV;
     HistoryList histList = HistoryList.getHistoryList();
     Inscription currIns;
+    ToggleButton toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,8 @@ public class InscriptionDisplay extends ActionBarActivity {
         Log.i("IncsriptionDisplay", "Successful display");
 
 
-
-
+        toggle = (ToggleButton) findViewById(R.id.toggleButton);
+        toggle.setOnClickListener(this);
 
     }
 
@@ -83,5 +86,28 @@ public class InscriptionDisplay extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onToggleClicked(View view) {
+        boolean on = ((ToggleButton) view).isChecked();
+
+        if (on) {
+            currIns.setSeen(false);
+        } else {
+            currIns.setSeen(true);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        /**boolean on = ((ToggleButton) v).isChecked();
+
+        if (on) {
+            currIns.setSeen(false);
+        } else {
+            currIns.setSeen(true);
+        }
+         */
     }
 }

@@ -20,6 +20,13 @@
         android:textSize="22sp"
         android:textIsSelectable="true" />
 
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        android:id="@+id/toggleButton"
+        android:onClick="onToggleClicked"/>
+
     <TextView android:text="@string/inscription_view_Text"
         android:layout_width="match_parent"
         android:layout_height="37dp"
