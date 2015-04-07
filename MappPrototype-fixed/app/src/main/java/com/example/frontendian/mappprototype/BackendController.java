@@ -19,6 +19,7 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @ Authors Reece, James, Milton, Federico
@@ -53,7 +54,7 @@ public class BackendController implements GoogleApiClient.ConnectionCallbacks,
         Log.i(TAG, "CREATED BACKEND");
 
         LocalBroadcastManager.getInstance(context).registerReceiver(mMessageReceiver,
-                new IntentFilter("BEC"));
+                new IntentFilter("Geofence"));
     }
 
 
@@ -81,15 +82,15 @@ public class BackendController implements GoogleApiClient.ConnectionCallbacks,
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            boolean entered = false;
+           /* boolean entered = false;
             for (int j = 0; j < pastGeofences.size(); j++) {
                 if (pastGeofences.get(j).equals(intent.getStringExtra(Constants.ID))) {
                     entered = true;
                 }
-            }
+            }*/
 
-            if (!entered) {
-                pastGeofences.add(intent.getStringExtra(Constants.ID));
+            if (intent.getStringExtra("sender").equals("GTIS")) {
+                //pastGeofences.add(intent.getStringExtra(Constants.ID));
 
 
                 Log.i(TAG, "RECEIVED BROADCAST: GTIS TO BEC");
@@ -128,12 +129,16 @@ public class BackendController implements GoogleApiClient.ConnectionCallbacks,
 
                     } else if (isLocal) {
                         Log.i(TAG, "ENTERED ARTIFACT ZONE");
-                        Intent localIntent = new Intent("BEC");
+                        Intent localIntent = new Intent("Geofence");
                         localIntent.putExtra("ID", ID);
+                        localIntent.putExtra("translation", curr.getTranslation());
                         localIntent.putExtra("Name", curr.getName());
+                        Log.i(TAG, "++!! Name is: " + curr.getName());
                         localIntent.putExtra("Text", curr.getArtifactText());
-                        Log.i(TAG, "SENT BROADCAST (ID,Name,Text) = ("+ID+","+curr.getName()+","+curr.getArtifactText()+")");
-                        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+                        Log.i(TAG, "++!! Text is: " + curr.getArtifactText());
+                        localIntent.putExtra("sender", "BEC");
+                        LocalBroadcastManager.getInstance(context).sendBroadcast(localIntent);
                     }
                 } else if (transitionType == Geofence.GEOFENCE_TRANSITION_EXIT) {
                     if (isCity) {
@@ -150,7 +155,7 @@ public class BackendController implements GoogleApiClient.ConnectionCallbacks,
                         loadArtifactGeofences(city);
                     } else if (isLocal) {
                         Log.i(TAG, "DWELL ARTIFACT ZONE");
-                        Intent localIntent = new Intent("BEC");
+                        Intent localIntent = new Intent("Geofence");
                         localIntent.putExtra("ID", ID);
                         localIntent.putExtra("Name", curr.getName());
                         localIntent.putExtra("Text", curr.getArtifactText());

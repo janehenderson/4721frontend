@@ -96,10 +96,11 @@ public class GeofenceTransitionsIntentService extends IntentService implements G
 
         Log.i(TAG, "Broadcasting message: GTIS TO BEC");
         //Make Intent to broadcast
-        Intent intent = new Intent("BEC");
+        Intent intent = new Intent("Geofence");
         intent.putExtra(Constants.TRANSITION_TYPE, transitionType);
         intent.putExtra(Constants.CITYORLOCALTAG, triggeredGeoFenceId.substring(0, 1));
         intent.putExtra(Constants.ID, triggeredGeoFenceId);
+        intent.putExtra("sender", "GTIS");
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 

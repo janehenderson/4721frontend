@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 
@@ -34,7 +35,7 @@ public class GeofenceStore {
     private CityGeofence currentCity = null;
     private final File OFFLINE_CITIES;
     private File currArtifactGeofences = null;
-
+    private String preferredLanguage = null;
     /**
      * Context will be used for having private fie storage.
      */
@@ -43,6 +44,7 @@ public class GeofenceStore {
         cityGeofences = new ArrayList<>();
         artifactGeofences = new ArrayList<>();
         OFFLINE_CITIES = new File(context.getFilesDir(), Constants.MASTER_FILE_NAME);
+        preferredLanguage = Locale.getDefault().getDisplayLanguage();
     }
 
     /**
@@ -295,7 +297,7 @@ public class GeofenceStore {
 
                 //Construct object and fill in other fields (description, etc).
                 ArtifactGeofence newArtifactGeofence = new ArtifactGeofence(name, lat, lon, 100, Geofence.GEOFENCE_TRANSITION_ENTER);
-                //newArtifactGeofence.getArtifactGeofenceFromJSONObject(jsonArray.getJSONObject(i));
+                newArtifactGeofence.getArtifactGeofenceFromJSONObject(jsonArray.getJSONObject(i), preferredLanguage);
 
                 artifactGeofences.add(newArtifactGeofence);
             }
@@ -342,6 +344,7 @@ public class GeofenceStore {
     public ArtifactGeofence getArtifactGeofence(String ID) {
         int len = artifactGeofences.size();
         for (int i = 0; i < len; i++) {
+            Log.i(TAG,"Artifact ID in Geostore: " + artifactGeofences.get(i).getID());
             if (artifactGeofences.get(i).getID().equals(ID)) {
                 return artifactGeofences.get(i);
             }

@@ -32,21 +32,20 @@ public class ArtifactGeofence {
 
 
     /**
-     * @param ID         The Artifact's request ID
+     * @param name         The Artifact's name
      * @param latitude   Latitude of the Geofence's center (degrees)
      * @param longitude  Longitude of the Geofence's center (degrees)
      * @param radius     Radius of the Geofence (meters)
      * @param transition Type of Geofence transition
      */
 
-    public ArtifactGeofence(String ID, double latitude, double longitude, float radius, int transition) {
-        artifactID = "l" + ID;
+    public ArtifactGeofence(String name, double latitude, double longitude, float radius, int transition) {
+        this.name = name;
+        artifactID = "l" + name;
         artifactLatitude = latitude;
         artifactLongitude = longitude;
         artifactRadius = radius;
         transitionType = transition;
-
-
     }
 
     public void setArtifactText(String str) {
@@ -87,6 +86,7 @@ public class ArtifactGeofence {
         return transitionType;
     }
 
+    public String getTranslation() { return translation; }
     public String getName() {
         return name;
     }
@@ -102,11 +102,11 @@ public class ArtifactGeofence {
      * @param jOBject JSON object to get text from
      * @throws JSONException
      */
-    public void getArtifactGeofenceFromJSONObject(JSONObject jOBject) throws JSONException {
+    public void getArtifactGeofenceFromJSONObject(JSONObject jOBject, String preferredLanguage) throws JSONException {
 
         //this'll break I'd say - Isnor
         setArtifactText(jOBject.getString("text"));
-        setTranslation(jOBject.getString("translation"));
+        setTranslation(jOBject.getJSONObject("translation").getString(preferredLanguage));
         setLocationDescription(jOBject.getString("description"));
 //        setArtifactImg(null); - We don't do this yet
     }
