@@ -246,10 +246,11 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
                 if (currGeofenceID.substring(0, 1).equals("l")) {
                     Log.i("GeoHandler", "started");
                     //ID is Translation for now
-                    String trans = intent.getStringExtra("translation");
-                    if (trans != null) {
+                    String name = intent.getStringExtra("Name");
+
+                    if (name != null && mHistList.getInscription(name)==null) {
                         String text = intent.getStringExtra("Text");
-                        String name = intent.getStringExtra("Name");
+                        String trans = intent.getStringExtra("translation");
                         Log.i("Geohandler", "Got ID,Text, Name = (" + trans + "," + text + "," + name + ")");
                         Inscription inscription = new Inscription(name, trans, text);
                         Log.i("Geohandler", "Created Inscription");
@@ -275,7 +276,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
                         mArrayAdapter.notifyDataSetChanged();
                         Log.i("GeoHandler", "Notified array adapter");
                     }//if name/id isnt null
-                    else {Log.e("GeoHandler", "Bad Translation. Null data. ID IS " + trans);}
+                    else {Log.e("GeoHandler", "Bad Translation. Null data. ID IS " + name + ". In HistList = "+mHistList.getInscription(name));}
                 }//if local tag.
             }
 
