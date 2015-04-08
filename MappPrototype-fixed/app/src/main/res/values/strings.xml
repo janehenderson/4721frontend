@@ -4,7 +4,7 @@
     <string name="app_name">Mapp History</string>
     <string name="textview">Hello Front Endian!</string>
     <string name="action_settings">Settings</string>
-    <string name="button">Switch example</string>
+    <string name="button">Enter geofence</string>
     <string name="switch1">Add inscription</string>
     <string name="title_activity_inscription_display">Inscription Display</string>
     <string name="hello_world">Hello world!</string>

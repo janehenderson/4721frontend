@@ -61,6 +61,9 @@ public class InscriptionDisplay extends ActionBarActivity implements View.OnClic
 
         toggle = (ToggleButton) findViewById(R.id.toggleButton);
         toggle.setOnClickListener(this);
+        if(currIns.isSeen()){
+            toggle.setChecked(true);
+        }
 
     }
 
@@ -93,9 +96,11 @@ public class InscriptionDisplay extends ActionBarActivity implements View.OnClic
         boolean on = ((ToggleButton) view).isChecked();
 
         if (on) {
-            currIns.setSeen(false);
-        } else {
             currIns.setSeen(true);
+            ((ToggleButton) view).setChecked(true);
+        } else {
+            currIns.setSeen(false);
+            ((ToggleButton) view).setChecked(false);
         }
     }
 

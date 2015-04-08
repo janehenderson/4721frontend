@@ -90,8 +90,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         // 1. Access the TextView defined in layout XML
         // and then set its text
-        mainTextView = (TextView) findViewById(R.id.main_textview);
-        mainTextView.setText("Set in Java!");
+        //mainTextView = (TextView) findViewById(R.id.main_textview);
+        //mainTextView.setText("Set in Java!");
         // 2. Access the Button defined in layout XML
         // and listen for it here
         mainButton = (Button) findViewById(R.id.first_switch);
