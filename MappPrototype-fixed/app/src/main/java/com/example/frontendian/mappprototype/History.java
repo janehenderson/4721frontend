@@ -310,8 +310,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("My notification")
-                .setContentText("Here is a new Notification!:" + name)
+                .setContentTitle("New inscription found!")
+                .setContentText("" + name)
                 .setContentIntent(resultPendingIntent);
         NotificationManager mNotifyMana =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
