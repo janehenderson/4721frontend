@@ -289,8 +289,8 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
     private void testMethod(Context context, Intent intent){
         Log.i("GeoHandler", "started");
         //ID is Translation for now
-        String trans = "Translation";
-        String text = "Text";
+        String trans = "Translation " + mHistList.getCount();
+        String text = "Text " + mHistList.getCount();
         String name = "Name "+mHistList.getCount();
         Log.i("Geohandler", "Got ID,Text, Name");
         Inscription inscription = new Inscription(name, trans, text);
