@@ -261,7 +261,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
                         Log.i("LOOKATMEIMMMR.EESEEKS", "Inscription added: " + (mHistList.getInscription(name) != null) + ", name:" + name);
                         Log.i("Geohandler", "Creating Notification");
                         Intent resultIntent = new Intent(context, InscriptionDisplay.class);
-                        resultIntent.putExtra("IDString", name);
+                        resultIntent.putExtra("IDstring", name);
                         PendingIntent resultPendingIntent = PendingIntent.getActivity(
                                 context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                         //How do we get the inscription object into the display???
@@ -303,7 +303,7 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
 
         Log.i("Geohandler", "Creating Notification");
         Intent resultIntent = new Intent(context, InscriptionDisplay.class);
-        resultIntent.putExtra("IDString", name);
+        resultIntent.putExtra("IDstring", name);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(
                 context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         //How do we get the inscription object into the display???

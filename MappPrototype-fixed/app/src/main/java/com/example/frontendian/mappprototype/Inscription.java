@@ -10,12 +10,12 @@ public class Inscription {
     private String name, trans, text;
     private boolean seen;
 
-    public Inscription(){
+    /**public Inscription(){
         name= null;
         trans= null;
         text= null;
         seen = false;
-    }
+    }*/
     public Inscription(String inname, String intrans, String intext) {
         name = inname;
         trans=intrans;
