@@ -10,7 +10,7 @@ public final class Constants {
 
     //public static final String MASTER_FILE_NAME = "test_master.json";
     public static final String MASTER_FILE_NAME = "cities_master.json";
-    public static final String ONLINE_CITY_URL_ROOT = "http://federicoaureliano.github.io";
+    public static final String ONLINE_CITY_URL_ROOT = "http://federicoaureliano.github.io/";
     public static final String ONLINE_CITY_LIST_URL = "http://federicoaureliano.github.io/" + MASTER_FILE_NAME;
     public static final String ONLINE_CITIES_DIR = "cities/";
 
