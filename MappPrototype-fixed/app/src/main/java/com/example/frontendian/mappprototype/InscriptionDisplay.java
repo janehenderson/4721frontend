@@ -105,14 +105,15 @@ public class InscriptionDisplay extends ActionBarActivity implements View.OnClic
     }
 
     @Override
-    public void onClick(View v) {
-        /**boolean on = ((ToggleButton) v).isChecked();
+    public void onClick(View view) {
+        boolean on = ((ToggleButton) view).isChecked();
 
         if (on) {
-            currIns.setSeen(false);
-        } else {
             currIns.setSeen(true);
+            ((ToggleButton) view).setChecked(true);
+        } else {
+            currIns.setSeen(false);
+            ((ToggleButton) view).setChecked(false);
         }
-         */
     }
 }
