@@ -121,7 +121,7 @@ public class GeofenceStore {
             String json = "";
             try {
                 json = this.getArtifactGeofenceListFromJSONUrl(new URL(Constants.ONLINE_CITY_URL_ROOT
-                        + Constants.ONLINE_CITIES_DIR + city.getName()));//cuts off the 'c' TODO: Add catch
+                        + Constants.ONLINE_CITIES_DIR + city.getName() + ".json"));//cuts off the 'c' TODO: Add catch
                 Log.i(TAG, "Got JSON String: " + json);
 //                this.saveLocally(json);
             } catch (ExecutionException e) {
