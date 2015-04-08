@@ -277,6 +277,23 @@ public class History extends ActionBarActivity implements View.OnClickListener, 
                         mArrayAdapter.notifyDataSetChanged();
                         Log.i("GeoHandler", "Notified array adapter");
                     }//if name/id isnt null
+                    else if(mHistList.getInscription(name)!=null && mHistList.getInscription(name).isSeen()){//iff we already have the inscription, and it is toggle don
+                        Log.i("GeoHandler", "IsSeen true. Now renotyfing.");
+                        Intent resultIntent = new Intent(context, InscriptionDisplay.class);
+                        resultIntent.putExtra("IDstring", name);
+                        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                                context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        //How do we get the inscription object into the display???
+
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                                .setSmallIcon(R.drawable.ic_launcher)
+                                .setContentTitle("My notification")
+                                .setContentText("Here is a new Notification!:" + name)
+                                .setContentIntent(resultPendingIntent);
+                        NotificationManager mNotifyMana =
+                                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotifyMana.notify(01, mBuilder.build());
+                    }
                     else {Log.e("GeoHandler", "Bad Translation. Null data. ID IS " + name + ". In HistList = "+mHistList.getInscription(name));}
                 }//if local tag.
             }
